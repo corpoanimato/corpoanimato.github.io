@@ -1,0 +1,453 @@
+/* VARIABLES Y ESTILOS BASE */
+:root {
+  --negro: #000000;
+  --texto-base: #ffffff;
+  --ojo-base: #c6dddb;
+  --ojo-acento: #aed0e0;
+  --ojo-neon: #8aff88f2;
+  --menu-neon: #82a7fff1;
+  --ojo-brillo: 0 0 30px var(--ojo-neon);
+  --lente-rosa: #ff88d5;
+  --lente-azul: #63accf;
+  --pupila-externa: #562b56;
+  --pupila-brillo: #77cdea;
+  --papel: #ece6da;
+}
+
+/*Precarga de imagenes*/
+body::after {
+  content: url('img/disfraz-bio.png') url('img/disfraz-archivo.png') url('img/disfraz-contacto.png');
+  display: none;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: var(--negro);
+  overflow: hidden;
+  font-family: 'Courier New', monospace;
+  letter-spacing: -0.02em;
+  line-height: 1.6;
+}
+
+#lienzo-estrellas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/*CONTENEDOR PRINCIPAL: OJO*/
+.escena-ojo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  height: 250px;
+  transform: translate(-50%, -50%);
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 10;
+}
+
+.escena-ojo.esta-minimizado {
+  left: 20%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+}
+
+/*Elementos-disfraz del ojo*/
+.envoltorio {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/*Anatomia interna del ojo*/
+.ojo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 15;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, var(--ojo-base) 40%, var(--ojo-acento) 70%, var(--negro) 100%);
+  box-shadow: 0 0 50px var(--ojo-neon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ojo__lente {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at 50% 50%, var(--lente-rosa) 40%, var(--lente-azul) 70%, var(--negro) 100%);
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease-out;
+}
+
+.ojo__pupila {
+  width: 75px;
+  height: 75px;
+  background: radial-gradient(circle at 50% 50%, var(--negro) 40%, var(--pupila-externa) 70%, var(--pupila-brillo) 100%);
+  border-radius: 50%;
+}
+
+/*MENÚ Y NAVEGACIÓN*/
+.menu-navegacion {
+  position: fixed;
+  width: 100%;
+  margin-top: 15px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 50px;
+  gap: 30px;
+  z-index: 50;
+}
+
+/*Texto-menu y transformacion*/
+.menu-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-decoration: none;
+  color: var(--texto-base);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  transition: all 0.2s ease-in-out;
+  min-width: 180px;
+  white-space: nowrap;
+}
+
+.menu-link::before {
+  content: attr(data-hover);
+  /* Captura el texto en español desde el HTML */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--menu-neon);
+  background-color: var(--negro);
+  /*Tapa el número*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+  pointer-events: none;
+}
+
+.menu-link:hover::before {
+  opacity: 1;
+  animation: transformarTexto 0.15s ease-in-out forwards;
+}
+
+/*PANEL LATERAL*/
+.contenido-principal {
+  position: fixed;
+  top: 0;
+  right: -60%;
+  width: 60%;
+  height: 100%;
+  padding: 40px;
+  box-sizing: border-box;
+  color: var(--texto-base);
+  transition: all 0.6s ease;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.contenido-principal.esta-abierto {
+  right: 0;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.contenido-principal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, var(--negro) 0%, var(--negro) 90%);
+  filter: blur(45px);
+  z-index: -1;
+}
+
+/*Disfraz: cambia menu y panel*/
+#disfraz {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250%;
+  height: 250%;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 15;
+  pointer-events: none;
+  transition: background-image 0.3s ease-in-out, opacity 0.3s ease;
+  opacity: 1;
+}
+
+#disfraz.bio-bg {
+  background-image: url('img/disfraz-bio.png');
+}
+
+#disfraz.archivo-bg {
+  background-image: url('img/disfraz-archivo.png');
+}
+
+#disfraz.contacto-bg {
+  background-image: url('img/disfraz-contacto.png');
+}
+
+/*Estilo elementos basicos que se repiten*/
+button {
+  margin-left: 90%;
+  font-size: 3rem;
+  color: var(--ojo-acento);
+  background-color: var(--negro);
+  border: none;
+  cursor: pointer;
+}
+
+h2 {
+  font-family: 'Courier New', monospace;
+  color: var(--lente-rosa);
+  font-weight: 900;
+}
+
+/* SECCION ARCHIVO */
+#contenido-proyectos {
+  display: flex;
+  padding-top: 10px;
+  justify-content: center;
+  align-items: stretch;
+  gap: 60px; /*espacio entre proyectos*/
+  flex-wrap: wrap; /*si no caben, bajan de fila */
+  overflow: visible;
+}
+
+/*Efecto de Polaroid revelada*/
+.polaroid{
+  --tilt: 0deg;
+  background: var(--papel);
+  padding: 15px 10px 0;
+  border-radius: 8px 8px 3px 3px;
+  transform: rotate(var(--tilt));
+  transition: transform 0.5s cubic-bezier(.2,.8,.2,1), box-shadow 0.5s;
+  cursor: pointer;
+  display: inline-block;
+  width: 260px;
+}
+.polaroid:nth-child(odd){ --tilt: -2.5deg; }
+.polaroid:nth-child(even){ --tilt: 1.8deg; }
+.polaroid:hover{
+  transform: rotate(0deg) translateY(-6px) scale(1.03);
+  box-shadow:
+    0 1px 1px rgba(0,0,0,0.3),
+    0 24px 40px rgba(0,0,0,0.55);
+}
+
+.frame{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--negro);
+  border-radius: 8px 8px 3px 3px;
+}
+
+.frame img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1) brightness(0.32) contrast(1.25) sepia(0.35) hue-rotate(-15deg) saturate(1.4);
+  transform: scale(1.06);
+  transition: filter 0.9s ease, transform 1.4s ease;
+}
+.polaroid:hover .frame img{
+  filter: grayscale(0) brightness(1) contrast(1.02) sepia(0) hue-rotate(0deg) saturate(1);
+  transform: scale(1);
+}
+
+.veil{
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(150, 89, 194, 0.35), rgba(10,6,5,0.75));
+  transition: opacity 0.9s ease;
+  pointer-events: none;
+}
+.polaroid:hover .veil{ opacity: 0; }
+
+.polaroid:hover { opacity: 1; }
+
+/*Transformacion "APP" a "VER DEMO"*/
+.demo{
+  display: flex;
+  padding: 5px 0 5px 0;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-decoration: none;
+  color: var(--negro);
+  font-family:'Space Mono', monospace;
+  font-size: 0.8rem;
+  background-color: var(--papel);
+  transition: all 0.3s ease-in-out;
+}
+
+.demo::before {
+  content: attr(data-hover); /* Captura texto*/
+  position: absolute;
+  font-size: 1rem;
+  color: var(--negro);
+  background-color: var(--papel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+  pointer-events: none;
+}
+
+/*Cuando el mouse esté encima de la polaroid completa cambio a "VER DEMO"*/
+.polaroid:hover .demo::before {
+  opacity: 1;
+  animation: transformarTexto 0.2s ease-in-out forwards;
+  background-color: var(--ojo-acento);
+  width: 70%;
+}
+
+
+/*SECCION CONTACTO*/
+#contenido-redes {
+  display: grid;
+  /*tamaño de las celdas*/
+  grid-template-columns: repeat(auto-fit, minmax(60px, 80px));
+  justify-content: center;
+  margin-top: 50px;
+  gap: 1.5rem;
+  overflow: visible;
+}
+
+.link-social {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: grab;
+  transition: transform 0.25s ease;
+}
+
+.link-social:active {
+  cursor: grabbing;
+}
+
+.icono {
+  width: 100%;
+  /* ícono grande*/
+  height: auto;
+  object-fit: contain;
+  filter: url(#contorno-sticker);
+  pointer-events: none;
+}
+
+.nombre-red {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.link-social:hover .nombre-red {
+  opacity: 1;
+}
+
+/* --- desorden tipo "tablero de stickers" --- */
+.link-social:nth-child(1) {
+  transform: translateY(6px) rotate(-4deg);
+}
+
+.link-social:nth-child(2) {
+  transform: translateY(-10px) rotate(3deg);
+}
+
+.link-social:nth-child(3) {
+  transform: translateY(4px) rotate(-2deg);
+}
+
+.link-social:nth-child(4) {
+  transform: translateY(-6px) rotate(5deg);
+}
+
+.link-social:nth-child(5) {
+  transform: translateY(8px) rotate(-3deg);
+}
+
+.link-social:hover {
+  transform: translateY(-6px) scale(1.1) rotate(0deg) !important;
+}
+
+
+/*PARTE DEL PIE DE PAGINA*/
+footer {
+  position: fixed;
+  bottom: 20px;
+  left: 30px;
+  z-index: 5;
+  /* bajo, para no tapar el ojo ni el panel, pero visible sobre las estrellas */
+  font-size: 0.80rem;
+  opacity: 0.8;
+}
+
+footer a,
+footer p {
+  color: var(--texto-base);
+  font-style: oblique;
+  text-decoration: none;
+  position: relative;
+  z-index: 1003;
+}
+
+footer a:hover {
+  color: var(--negro);
+  font-weight: bold;
+  background-color: var(--menu-neon);
+  border-radius: 35px;
+  padding: 8px;
+}

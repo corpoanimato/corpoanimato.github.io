@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>corpoanimato</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.ico">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+  <canvas id="lienzo-estrellas"></canvas>
+
+  <!--AQUI VA LA PARTE DEL OJO ANIMADO E INTERACCIONES-->
+  <div id="ojo-completo" class="escena-ojo">
+    <div class="envoltorio" id="disfraz"></div>
+    <div id="contenedor-ojo" class="ojo">
+      <div class="ojo__lente">
+        <div class="ojo__pupila"></div>
+      </div>
+    </div>
+  </div>
+
+  <!--MENU DE NAVEGACION PRINCIPAL-->
+  <nav class="menu-navegacion">
+    <a href="#bio" class="menu-link" data-fondo="bio-bg" data-archivo="" data-hover="[ BIO ]" data-id="bio">[ /206 ]</a>
+    <a href="#archivo" class="menu-link" data-fondo="archivo-bg" data-archivo="proyectos.html" data-hover="[ARCHIVO]" data-id="archivo">[ /300 ]</a>
+    <a href="#contacto" class="menu-link" data-fondo="contacto-bg" data-archivo="" data-hover="[CONTACTO]" data-id="contacto">[ /404 ]</a>
+</nav>
+
+
+<main id="area-contenido" class="contenido-principal">
+  <!-- El botón del panel está esperando -->
+  <button id="boton-cerrar"> x </button>
+
+<section id="contenido-bio" class="seccion-oculta">
+    <h2>corⳏoⲁnimato</h2>
+    <p>Slowmotion + Ecléctico-visual + Interferencia</p>
+  </section>
+
+  <!-- SECCIÓN ARCHIVO -->
+  <section id="contenido-archivo" class="seccion-oculta">
+    <h2>aᖇchivo.</h2>
+    <!-- CONTENEDOR: proyectos seccion archivo-->
+    <div id="contenido-proyectos">
+      <a href="https://corpoanimato.github.io/porquin-v18-demo-app/" target="_blank" class="polaroid"
+        style="text-decoration:none">
+        <div class="frame">
+          <img src="./img/preview-app.png" alt="previsualizacion app">
+          <div class="veil"></div>
+        </div>
+        <span class="demo" data-hover="ver demo">: app :</span>
+        </a>
+    </div>
+    <!-- cierra #contenido-proyectos -->
+  </section>
+
+  <!-- SECCIÓN CONTACTO-->
+  <!--Filtro tipo svg para contorno de los iconos-->
+  <svg width="0" height="0" style="position:absolute">
+  <filter id="contorno-sticker">
+
+    <!--contorno exterior-->
+    <feMorphology in="SourceAlpha" operator="dilate" radius="5" result="exterior-engordado"/>
+    <feFlood flood-color="#f0ede5" result="color-exterior"/>
+    <feComposite in="color-exterior" in2="exterior-engordado" operator="in" result="borde-exterior"/>
+
+  <!--contorno interior-->
+    <feMorphology in="SourceAlpha" operator="dilate" radius="2" result="interior-engordado"/>
+    <feFlood flood-color="#9B5DE5" result="color-interior"/>
+    <!--recorta para que solo se vea la silueta engordada-->
+    <feComposite in="color-interior" in2="interior-engordado" operator="in" result="borde-interior"/>
+    <!--orden de iconos tipo sticker-->
+    <feMerge>
+      <feMergeNode in="borde-exterior"/>
+      <feMergeNode in="borde-interior"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+</svg>
+
+<!--INICIO DE SECCION CONTACTO-->
+  <section id="contenido-contacto" class="seccion-oculta">
+    <h2>ho|a.</h2>
+    <p class="">Para colaboraciones en diseño visual e interacción, hablemos.</p>
+
+    <div id="contenido-redes">
+    <a href="mailto:corpoanimato@proton.me" target="_blank" class="link-social">
+        <img class="icono" src="/img/pixel-art-email.png" alt="email">
+        <span class="nombre-red">e-mail</span>
+    </a>
+    <a href="https://github.com/corpoanimato" target="_blank" class="link-social">
+        <img class="icono" src="/img/pixel-art-github.png" alt="github">
+        <span class="nombre-red">github</span>
+    </a>
+    <a href="https://instagram.com/corpoanimato" target="_blank" class="link-social">
+        <img class="icono" src="/img/pixel-art-insta.png" alt="instagram">
+        <span class="nombre-red">instagram</span>
+    </a>
+    <a href="https://steamcommunity.com/ID/" target="_blank" class="link-social">
+        <img class="icono" src="/img/pixel-art-steam.png" alt="steam">
+        <span class="nombre-red">steam</span>
+    </a>
+    <a href="https://youtube.com/@corpoanimato" target="_blank" class="link-social">
+        <img class="icono" src="/img/pixel-art-youtube.png" alt="youtube">
+        <span class="nombre-red">youtube</span>
+    </a>
+</div>
+
+</section>
+
+  </main>
+
+  <!--Instrucciones y animaciones en JavaScript-->
+  <script src="ojo.js"></script>
+  <script src="escena.js"></script>
+  <script src="estrellas.js"></script>
+</body>
+
+<!-- Footer -->
+<footer>
+  <p>© 2026 | <a href="">@corpoanimato</a></p>
+</footer>
+
+</html>
