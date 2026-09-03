@@ -427,12 +427,11 @@ h2 {
 /*PARTE DEL PIE DE PAGINA*/
 footer {
   position: fixed;
-  bottom: 20px;
-  left: 30px;
+  bottom: 15px;
+  left: 20px;
   z-index: 5;
-  /* bajo, para no tapar el ojo ni el panel, pero visible sobre las estrellas */
   font-size: 0.80rem;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 footer a,
