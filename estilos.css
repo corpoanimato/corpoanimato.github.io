@@ -42,7 +42,6 @@ html {
   pointer-events: none;
 }
 
-/*CONTENEDOR PRINCIPAL: OJO*/
 .escena-ojo {
   position: fixed;
   top: 50%;
@@ -60,7 +59,6 @@ html {
   transform: translate(-50%, -50%) scale(0.5);
 }
 
-/*Elementos-disfraz del ojo*/
 .envoltorio {
   position: absolute;
   top: 0;
@@ -73,7 +71,6 @@ html {
   pointer-events: none;
 }
 
-/*Anatomia interna del ojo*/
 .ojo {
   position: absolute;
   top: 0;
@@ -109,7 +106,6 @@ html {
   border-radius: 50%;
 }
 
-/*MENÚ Y NAVEGACIÓN*/
 .menu-navegacion {
   position: fixed;
   width: 100%;
@@ -196,7 +192,6 @@ html {
   z-index: -1;
 }
 
-/*Disfraz: cambia menu y panel*/
 #disfraz {
   position: absolute;
   top: 50%;
@@ -225,7 +220,6 @@ html {
   background-image: url('img/disfraz-contacto.png');
 }
 
-/*Estilo elementos basicos que se repiten*/
 button {
   margin-left: 90%;
   font-size: 3rem;
@@ -252,7 +246,6 @@ h2 {
   overflow: visible;
 }
 
-/*Efecto de Polaroid revelada*/
 .polaroid{
   --tilt: 0deg;
   background: var(--papel);
@@ -306,7 +299,6 @@ h2 {
 
 .polaroid:hover { opacity: 1; }
 
-/*Transformacion "APP" a "VER DEMO"*/
 .demo{
   display: flex;
   padding: 5px 0 5px 0;
@@ -322,7 +314,7 @@ h2 {
 }
 
 .demo::before {
-  content: attr(data-hover); /* Captura texto*/
+  content: attr(data-hover); 
   position: absolute;
   font-size: 1rem;
   color: var(--negro);
@@ -335,7 +327,6 @@ h2 {
   pointer-events: none;
 }
 
-/*Cuando el mouse esté encima de la polaroid completa cambio a "VER DEMO"*/
 .polaroid:hover .demo::before {
   opacity: 1;
   animation: transformarTexto 0.2s ease-in-out forwards;
@@ -343,11 +334,9 @@ h2 {
   width: 70%;
 }
 
-
 /*SECCION CONTACTO*/
 #contenido-redes {
   display: grid;
-  /*tamaño de las celdas*/
   grid-template-columns: repeat(auto-fit, minmax(60px, 80px));
   justify-content: center;
   margin-top: 50px;
@@ -371,7 +360,6 @@ h2 {
 
 .icono {
   width: 100%;
-  /* ícono grande*/
   height: auto;
   object-fit: contain;
   filter: url(#contorno-sticker);
@@ -394,37 +382,16 @@ h2 {
   transition: opacity 0.2s ease;
 }
 
-.link-social:hover .nombre-red {
-  opacity: 1;
-}
+.link-social:hover .nombre-red { opacity: 1; }
 
-/* --- desorden tipo "tablero de stickers" --- */
-.link-social:nth-child(1) {
-  transform: translateY(6px) rotate(-4deg);
-}
+.link-social:nth-child(1) { transform: translateY(6px) rotate(-4deg); }
+.link-social:nth-child(2) { transform: translateY(-10px) rotate(3deg); }
+.link-social:nth-child(3) { transform: translateY(4px) rotate(-2deg); }
+.link-social:nth-child(4) { transform: translateY(-6px) rotate(5deg); }
+.link-social:nth-child(5) { transform: translateY(8px) rotate(-3deg); }
 
-.link-social:nth-child(2) {
-  transform: translateY(-10px) rotate(3deg);
-}
+.link-social:hover { transform: translateY(-6px) scale(1.1) rotate(0deg) !important; }
 
-.link-social:nth-child(3) {
-  transform: translateY(4px) rotate(-2deg);
-}
-
-.link-social:nth-child(4) {
-  transform: translateY(-6px) rotate(5deg);
-}
-
-.link-social:nth-child(5) {
-  transform: translateY(8px) rotate(-3deg);
-}
-
-.link-social:hover {
-  transform: translateY(-6px) scale(1.1) rotate(0deg) !important;
-}
-
-
-/*PARTE DEL PIE DE PAGINA*/
 footer {
   position: fixed;
   bottom: 15px;
@@ -434,8 +401,7 @@ footer {
   opacity: 0.6;
 }
 
-footer a,
-footer p {
+footer a, footer p {
   color: var(--texto-base);
   font-style: oblique;
   text-decoration: none;
