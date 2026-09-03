@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>corpoanimato</title>
+  <title>Corpoanimato</title>
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.ico">
   <link rel="stylesheet" href="estilos.css">
 </head>
@@ -22,17 +22,15 @@
       </div>
     </div>
   </div>
-
-  <!--MENU DE NAVEGACION PRINCIPAL-->
+  
   <nav class="menu-navegacion">
     <a href="#bio" class="menu-link" data-fondo="bio-bg" data-archivo="" data-hover="[ BIO ]" data-id="bio">[ /206 ]</a>
     <a href="#archivo" class="menu-link" data-fondo="archivo-bg" data-archivo="proyectos.html" data-hover="[ARCHIVO]" data-id="archivo">[ /300 ]</a>
     <a href="#contacto" class="menu-link" data-fondo="contacto-bg" data-archivo="" data-hover="[CONTACTO]" data-id="contacto">[ /404 ]</a>
 </nav>
 
-
+  
 <main id="area-contenido" class="contenido-principal">
-  <!-- El botón del panel está esperando -->
   <button id="boton-cerrar"> x </button>
 
 <section id="contenido-bio" class="seccion-oculta">
@@ -40,7 +38,6 @@
     <p>Slowmotion + Ecléctico-visual + Interferencia</p>
   </section>
 
-  <!-- SECCIÓN ARCHIVO -->
   <section id="contenido-archivo" class="seccion-oculta">
     <h2>aᖇchivo.</h2>
     <!-- CONTENEDOR: proyectos seccion archivo-->
@@ -58,19 +55,16 @@
   </section>
 
   <!-- SECCIÓN CONTACTO-->
-  <!--Filtro tipo svg para contorno de los iconos-->
   <svg width="0" height="0" style="position:absolute">
   <filter id="contorno-sticker">
 
-    <!--contorno exterior-->
     <feMorphology in="SourceAlpha" operator="dilate" radius="5" result="exterior-engordado"/>
     <feFlood flood-color="#f0ede5" result="color-exterior"/>
     <feComposite in="color-exterior" in2="exterior-engordado" operator="in" result="borde-exterior"/>
 
-  <!--contorno interior-->
     <feMorphology in="SourceAlpha" operator="dilate" radius="2" result="interior-engordado"/>
     <feFlood flood-color="#9B5DE5" result="color-interior"/>
-    <!--recorta para que solo se vea la silueta engordada-->
+   
     <feComposite in="color-interior" in2="interior-engordado" operator="in" result="borde-interior"/>
     <!--orden de iconos tipo sticker-->
     <feMerge>
@@ -113,15 +107,13 @@
 
   </main>
 
-  <!--Instrucciones y animaciones en JavaScript-->
   <script src="ojo.js"></script>
   <script src="escena.js"></script>
   <script src="estrellas.js"></script>
 </body>
 
-<!-- Footer -->
 <footer>
-  <p>© 2026 | <a href="">@corpoanimato</a></p>
+  <p>© 2026 | @corpoanimato</p>
 </footer>
 
 </html>
